@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="geektime.spring.springbucks.model.Coffee">
+    <select id="getCoffeeList">
+        select *
+        from t_coffee where 1=1 and
+        <if test="ids !=null">
+            id in
+            <foreach item="item" index="index" collection="ids" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+    <insert id="addCoffee" parameterType="geektime.spring.springbucks.model.Coffee">
+        insert into t_coffee
+        values (createTime = #{coffee.createTime}, updateTime = #{coffee.updateTime})
+    </insert>
+    <delete id="delCoffee" parameterType="string">
+        delete
+        from t_coffee
+        where id = #{id}
+    </delete>
+    <update id="addCoffee" parameterType="geektime.spring.springbucks.model.Coffee">
+        update t_coffee
+        set updateTime = #{coffee.updateTime}
+        where id = #{coffee.id}
+    </update>
+</mapper>
