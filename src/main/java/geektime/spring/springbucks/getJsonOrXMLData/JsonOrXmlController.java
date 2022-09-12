@@ -28,7 +28,7 @@ public class JsonOrXmlController {
     /**
      * 返回xml格式数据
      */
-    @GetMapping(value = "/json", produces = "application/xml;charset=utf-8")
+    @GetMapping(value = "/xml", produces = "application/xml;charset=utf-8")
     @ResponseBody
     public String getXml(@RequestBody Map map) {
         return coffeeService.getCoffeeList(map).toString();
